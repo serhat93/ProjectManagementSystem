@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>Default title</title>
+
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"></link>
+
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"></link>
+
+	<link rel="stylesheet"
+		href="https://getbootstrap.com/examples/signin/signin.css"></link>
+
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</h:head>
+
+<h:body>
+	<div class="container">
+		<div class="pull-right">
+			<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+			<h:outputLink value="signin.xhtml">
+				Sign In
+			</h:outputLink>
+		</div>
+
+		<h:form class="form-signin">
+			<h2 class="form-signin-heading">Please Log In</h2>
+
+			<label for="inputEmail">Email address</label>
+			<h:inputText class="form-control" id="inputEmail" type="email"
+				value="#{login.username}" placeholder="Email address" />
+
+			<label for="inputPassword">Password</label>
+			<h:inputSecret class="form-control" id="inputPassword"
+				value="#{login.password}" />
+
+			<h:commandButton class="btn btn-lg btn-primary btn-block"
+				value="Log In" action="#{login.login}" />
+
+			<br />
+
+			<h:messages globalOnly="true" class="alert alert-danger"></h:messages>
+		</h:form>
+	</div>
+</h:body>
+
+</html>

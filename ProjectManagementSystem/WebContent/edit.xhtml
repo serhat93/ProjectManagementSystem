@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>Edit Page</title>
+
+	<link rel="stylesheet"
+		href="https://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css"></link>
+
+	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+
+	<script
+		src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"></link>
+
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"></link>
+
+	<script>
+		$(document).ready(function() {
+			$('#example').DataTable();
+		});
+	</script>
+
+	<style>
+.container {
+	margin-top: 10px;
+}
+</style>
+</h:head>
+
+<h:body>
+	<div class="container">
+		<h:form>
+			<h:commandButton class="btn btn-warning btn-sm" value="Back"
+				action="#{edit.back}" />
+
+			<div class="btn-toolbar pull-right">
+				<h:commandButton class="btn btn-danger btn-sm" value="Log Out"
+					action="#{edit.logout}" />
+			</div>
+			<div class="page-header">
+				<h1>
+					<label>Edit Group</label> <small> <h:outputText
+							value="#{edit.project.name}" />
+					</small> <small> <h:outputText value="#{edit.project.course.name}" /></small>
+				</h1>
+			</div>
+			<br />
+			<br />
+			<br />
+			<h:messages globalOnly="true" class="alert alert-danger"></h:messages>
+			<h:dataTable value="#{edit.studentList}" var="student"
+				styleClass="table table-striped table-bordered" id="example">
+				<h:column headerText="Student">
+					<f:facet name="header">
+						<h:outputLabel>Student</h:outputLabel>
+					</f:facet>
+					<h:outputText value="#{edit.studentList.indexOf(student) + 1}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputLabel>Number</h:outputLabel>
+					</f:facet>
+					<h:inputText value="#{student.no}" class="form-control" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputLabel>Name</h:outputLabel>
+					</f:facet>
+					<h:inputText value="#{student.name}" class="form-control" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputLabel>Surname</h:outputLabel>
+					</f:facet>
+					<h:inputText value="#{student.surname}" class="form-control" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputLabel>Grade</h:outputLabel>
+					</f:facet>
+					<h:inputText value="#{student.grade}" class="form-control" />
+				</h:column>
+				<h:column>
+					<div class="btn-toolbar">
+						<h:commandButton class="btn btn-success btn-sm" value="Save"
+							action="#{edit.updateStudent(student)}" />
+						<h:commandButton class="btn btn-danger btn-sm" value="Delete"
+							action="#{edit.deleteStudent(student)}" />
+					</div>
+				</h:column>
+			</h:dataTable>
+		</h:form>
+	</div>
+</h:body>
+</html>

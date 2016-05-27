@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>List Page</title>
+
+	<link rel="stylesheet"
+		href="https://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css"></link>
+
+	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+
+	<script
+		src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"></link>
+
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"></link>
+
+	<script>
+		$(document).ready(function() {
+			$('#example').DataTable();
+		});
+	</script>
+
+	<style>
+table.dataTable tbody tr {
+	background-color: transparent;
+}
+
+.container {
+	margin-top: 10px;
+}
+</style>
+
+
+</h:head>
+
+<h:body>
+
+	<div class="container">
+		<h:form>
+			<h:commandButton class="btn btn-warning btn-sm" value="Back"
+				action="#{list.back}" />
+			<div class="btn-toolbar pull-right">
+				<h:commandButton class="btn btn-primary btn-sm" value="Check Mails"
+					action="#{list.checkMails}" />
+				<h:commandButton class="btn btn-danger btn-sm" value="Log Out"
+					action="#{list.logout}" />
+			</div>
+			<h1>List Page</h1>
+		</h:form>
+		<br /> <br /> <br />
+		<h:dataTable value="#{list.groupList}" var="group"
+			styleClass="table table-striped table-bordered" id="example">
+			<h:column headerText="Group">
+				<f:facet name="header">
+					<h:outputLabel>Group</h:outputLabel>
+				</f:facet>
+				<h:outputText value="#{list.groupList.indexOf(group) + 1}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputLabel>Number</h:outputLabel>
+				</f:facet>
+				<h:dataTable value="#{group.students}" var="student">
+					<h:column>
+						<h:outputText value="#{student.no}" />
+					</h:column>
+				</h:dataTable>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputLabel>Name</h:outputLabel>
+				</f:facet>
+				<h:dataTable value="#{group.students}" var="student">
+					<h:column>
+						<h:outputText value="#{student.name}" />
+					</h:column>
+				</h:dataTable>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputLabel>Surname</h:outputLabel>
+				</f:facet>
+				<h:dataTable value="#{group.students}" var="student">
+					<h:column>
+						<h:outputText value="#{student.surname}" />
+					</h:column>
+				</h:dataTable>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputLabel>Grade</h:outputLabel>
+				</f:facet>
+				<h:column>
+					<h:dataTable value="#{group.students}" var="student">
+						<h:column>
+							<h:outputText value="#{list.getStudentGrade(student)}" />
+						</h:column>
+					</h:dataTable>
+				</h:column>
+			</h:column>
+			<h:column>
+				<h:form>
+					<div class="btn-toolbar">
+						<h:commandButton class="btn btn-warning btn-sm" value="Edit"
+							action="#{list.editGroup(group)}" />
+						<h:commandButton class="btn btn-danger btn-sm" value="Delete"
+							action="#{list.deleteGroup(group)}" />
+					</div>
+				</h:form>
+			</h:column>
+		</h:dataTable>
+	</div>
+
+</h:body>
+</html>
